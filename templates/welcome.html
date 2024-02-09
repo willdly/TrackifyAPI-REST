@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>More Authentication and Authorization by William Ly</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        text-align: center;
+        padding: 20px;
+        max-width: 80%;
+        overflow: auto;
+      }
+
+      .container pre {
+        max-width: 100%;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+      }
+
+      .active_session{
+        text-align: left;
+        padding: 20px;
+        max-width: 80%;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      {% if session %}
+        <div class="active_session">
+            <h1>Welcome {{session.userinfo.name}}!</h1>
+            <p><a href="/logout">Logout</a></p>
+            <div><pre>JWT: {{ session.id_token }}</pre></div>
+            <div><pre>User ID: {{ session.user_id }}</pre></div>
+        </div>
+      {% else %}
+        <h1>Welcome Guest</h1>
+        <h2>More Authentication and Authorization by William Ly</h2>
+        <p><a href="/login">Login</a></p>
+      {% endif %}
+    </div>
+  </body>
+</html>
